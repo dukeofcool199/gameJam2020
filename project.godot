@@ -16,7 +16,8 @@ _global_script_class_icons={
 [application]
 
 config/name="gamejam"
-config/icon="res://icon.png"
+run/main_scene="res://src/Game.tscn"
+config/icon="res://assets/icon.png"
 
 [rendering]
 
