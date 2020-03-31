@@ -19,6 +19,11 @@ config/name="gamejam"
 run/main_scene="res://src/Game.tscn"
 config/icon="res://assets/icon.png"
 
+[autoload]
+
+Movement="*res://src/Autoload/Movement.gd"
+Selection="*res://src/Autoload/Selection.gd"
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"
