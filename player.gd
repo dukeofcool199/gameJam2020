@@ -2,9 +2,12 @@ extends KinematicBody2D
 const MOVE_SPEED = 300
  
 onready var raycast = $RayCast2D
+onready var camera: Camera2D = $Camera2D
  
 func _ready():
 	yield(get_tree(), "idle_frame")
+	camera.set_as_toplevel(true)
+	camera.global_position = global_position
  
 func _physics_process(delta):
 	var move_vec = Vector2()
@@ -21,3 +24,4 @@ func _physics_process(delta):
    
 	var look_vec = get_global_mouse_position() - global_position
 	global_rotation = atan2(look_vec.y, look_vec.x)
+	camera.global_position = global_position
