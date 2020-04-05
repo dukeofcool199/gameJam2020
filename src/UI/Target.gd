@@ -8,7 +8,7 @@ func _ready() -> void:
 	visible = false
 
 func _input(event: InputEvent):
-	if event is InputEventMouseButton and event.get_button_index() == 1:
+	if event is InputEventMouseButton and event.get_button_index() == 1 and not get_parent().game_over:
 		anim_player.play("fade_in")
 		global_position = get_global_mouse_position()
 

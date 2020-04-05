@@ -23,6 +23,7 @@ config/icon="res://assets/icon.png"
 
 Movement="*res://src/Autoload/Movement.gd"
 Selection="*res://src/Autoload/Selection.gd"
+GlobalTimer="*res://src/Autoload/Timer.gd"
 
 [input]
 
