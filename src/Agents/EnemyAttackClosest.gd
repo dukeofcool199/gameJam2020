@@ -6,7 +6,7 @@ onready var player = get_parent().get_node("player")
 
 const DISTANCE_THRESHOLD: = 3.0
 
-export var max_speed: = 50.0
+export var max_speed: = 100.0
 
 var target_global_position: = Vector2.ZERO setget set_target_global_position
 var _velocity: = Vector2.ZERO
@@ -15,7 +15,7 @@ func _physics_process(delta: float) -> void:
 	if get_parent().game_over:
 		set_physics_process(false)
 		return
-	self.target_global_position = player.global_position
+	self.target_global_position = find_target_position()
 	if global_position.distance_to(target_global_position) < DISTANCE_THRESHOLD:
 		stop_moving()
 	if get_slide_count() > 0:
@@ -35,3 +35,18 @@ func stop_moving() -> void:
 func set_target_global_position(value: Vector2) -> void:
 	target_global_position = value
 	set_physics_process(true)
+
+# This attacks closest PC
+func find_target_position() -> Vector2:
+	var actors = get_parent().get_children()
+	var close_distance = INF
+	var close_actor = null
+	for actor in actors:
+		if actor.has_method("i_am_minion"):
+			var temp_dist = global_position.distance_to(actor.global_position)
+			if close_distance > temp_dist:
+				close_distance = temp_dist
+				close_actor = actor
+	if close_actor != null:
+		return close_actor.global_position
+	return global_position

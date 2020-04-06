@@ -5,6 +5,7 @@ static func in_radius(
 	global_position: Vector2
 ) -> bool:
 	#print(""+String(mouse_position)+": "+String(global_position))
-	if(mouse_position.distance_to(global_position) <= 13):
+	if(mouse_position.distance_to(global_position) <= 23
+):
 		return true
 	return false
