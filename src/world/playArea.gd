@@ -2,7 +2,8 @@ extends Node2D
 
 onready var timer = $ColorRect/Timer
 onready var loc = self.get_position_in_parent()
-onready var MAX_POS = self.scale.x
+onready var MAX_POSX = 800 #will set these dynamically or based off parent later
+onready var MAX_POSY = 600
 onready var item = preload("res://src/items/ingredient.tscn")
 
 
@@ -22,9 +23,9 @@ func _process(delta):
 func _on_Timer_timeout():
 	print("play area did a timer thing")
 	var newItem = item.instance()
-	newItem.position.x = 20
+	newItem.position = Vector2(rand_range(0,MAX_POSX),rand_range(0,MAX_POSY))
 	self.get_parent().add_child(newItem)
 	
 	timer.stop()
-	timer.set_wait_time(5)
+	timer.set_wait_time(2)
 	timer.start()
