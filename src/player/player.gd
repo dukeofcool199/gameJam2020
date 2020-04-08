@@ -9,6 +9,7 @@ var ingredients = 0
 
 signal value_changed(val)
 signal set_max_value(maximum)
+const goodGuy = 0
 
 var health: = 1000
  

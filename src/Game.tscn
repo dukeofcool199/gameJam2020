@@ -14,20 +14,15 @@ script = ExtResource( 5 )
 
 [node name="player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 514.083, 301.469 )
-scale = Vector2( 1, 1 )
 
 [node name="Target" parent="." instance=ExtResource( 1 )]
 position = Vector2( 41.3734, 29.6777 )
-scale = Vector2( 1, 1 )
 
 [node name="Minion1" parent="." instance=ExtResource( 2 )]
 position = Vector2( 141.553, 98.0106 )
-scale = Vector2( 1, 1 )
 
 [node name="Minion2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 102.61, 198.797 )
-scale = Vector2( 1, 1 )
 
 [node name="Enemy1" parent="." instance=ExtResource( 4 )]
 position = Vector2( 155.53, 384.57 )
-scale = Vector2( 1, 1 )

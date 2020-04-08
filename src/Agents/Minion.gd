@@ -6,6 +6,8 @@ onready var player = get_parent().get_node("player")
 const DISTANCE_THRESHOLD: = 3.0
 const PLAYER_DISTANCE_THRESHOLD: = 100.0
 
+const goodGuy = 0
+
 export var max_speed: = 150.0
 
 var target_global_position: = Vector2.ZERO setget set_target_global_position
