@@ -5,6 +5,7 @@ onready var raycast = $RayCast2D
 onready var camera: Camera2D = $Camera2D
 onready var anim_player: AnimationPlayer = $AnimationPlayer
 onready var sprite: = $Sprite
+var ingredients = 0
 
 signal value_changed(val)
 signal set_max_value(maximum)
@@ -43,6 +44,11 @@ func take_damage(amount: int) -> void:
 	emit_signal("value_changed", self.health)
 	if(self.health <= 0):
 		die()
+		
+func add_ingredient() -> void:
+	self.ingredients += 1
+	print(self.ingredients)
+	#$RichTextLabel.add_text("self.ingredients")
 
 func die() -> void:
 	#Have the end screen here

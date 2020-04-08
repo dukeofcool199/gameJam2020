@@ -1,12 +1,11 @@
-extends Node2D
+extends Area2D
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
 
+func _on_ingredient_body_entered(body):
+	if body.name == "player":
+		body.add_ingredient()
+		self.get_parent().remove_child(self)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	
-	rotation += 1 * delta
+	self.rotation += 1 * delta

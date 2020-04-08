@@ -6,14 +6,14 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 93, 80 )
 
-[node name="Node2D" type="Node2D"]
+[node name="ingredient" type="Area2D"]
 scale = Vector2( 0.3, 0.3 )
 script = ExtResource( 1 )
 
-[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2( 1.215, 1.264 )
 shape = SubResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="KinematicBody2D"]
+[node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
+[connection signal="body_entered" from="." to="." method="_on_ingredient_body_entered"]

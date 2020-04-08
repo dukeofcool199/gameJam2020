@@ -55,6 +55,21 @@ current = true
 smoothing_enabled = true
 smoothing_speed = 2.0
 
+[node name="RichTextLabel" type="RichTextLabel" parent="Camera2D"]
+modulate = Color( 1, 0.0196078, 0.0196078, 1 )
+self_modulate = Color( 0.835294, 0.027451, 0.027451, 1 )
+show_behind_parent = true
+margin_left = 384.78
+margin_top = 252.376
+margin_right = 424.78
+margin_bottom = 292.375
+rect_scale = Vector2( 3, 1 )
+visible_characters = 0
+text = "hello"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/fade_in = SubResource( 2 )
 
