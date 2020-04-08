@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/world/playArea.gd" type="Script" id=1]
+
+[node name="playArea" type="Node2D"]
+scale = Vector2( 38.1867, 30.4 )
+script = ExtResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="ColorRect"]
+[connection signal="timeout" from="ColorRect/Timer" to="." method="_on_Timer_timeout"]

@@ -1,5 +1,4 @@
 extends Node2D
-
 var game_over: = false
 # Declare member variables here. Examples:
 # var a = 2
