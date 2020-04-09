@@ -37,6 +37,7 @@ func _physics_process(delta: float) -> void:
 		# Due actions here
 		#Go Back to following Big Cheese
 		follow_player()
+		
 	else:
 		_velocity = Movement.arrive_to(_velocity,global_position,target_global_position,max_speed)
 		_velocity = move_and_slide(_velocity)
