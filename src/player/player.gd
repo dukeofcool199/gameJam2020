@@ -4,7 +4,7 @@ const MOVE_SPEED = 300
 onready var raycast = $RayCast2D
 onready var camera: Camera2D = $Camera2D
 onready var anim_player: AnimationPlayer = $AnimationPlayer
-onready var sprite: = $Sprite
+onready var sprite: = $Cheesecake_Ani
 var ingredients = 0
 
 signal value_changed(val)
@@ -24,12 +24,17 @@ func _physics_process(delta):
 	var move_vec = Vector2()
 	if Input.is_action_pressed("move_up"):
 		move_vec.y -= 1
+		$Cheesecake_Ani.play("RUN_W")
 	if Input.is_action_pressed("move_down"):
 		move_vec.y += 1
+		$Cheesecake_Ani.play("RUN_S")
 	if Input.is_action_pressed("move_left"):
 		move_vec.x -= 1
+		$Cheesecake_Ani.play("RUN_A")
 	if Input.is_action_pressed("move_right"):
 		move_vec.x += 1
+		$Cheesecake_Ani.play("RUN_D")
+		
 	move_vec = move_vec.normalized()
 	move_and_collide(move_vec * MOVE_SPEED * delta)
    
