@@ -21,10 +21,12 @@ func _physics_process(delta: float) -> void:
 	if get_slide_count() > 0:
 			var object = get_slide_collision(0).collider
 			if object != null and object.has_method("i_am_minion"):
+				$ENEMYANIM.play("SLEEP")
 				object.take_damage(100)
 				set_physics_process(false)
 				yield(get_tree().create_timer(1), "timeout")
 				set_physics_process(true)
+	$ENEMYANIM.play("WALKR")
 	_velocity = Movement.arrive_to(_velocity,global_position,target_global_position,max_speed)
 	_velocity = move_and_slide(_velocity)
 	sprite.rotation = _velocity.angle()

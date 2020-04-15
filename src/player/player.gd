@@ -34,6 +34,8 @@ func _physics_process(delta):
 	if Input.is_action_pressed("move_right"):
 		move_vec.x += 1
 		$Cheesecake_Ani.play("RUN_D")
+	if move_vec.x == 0 && move_vec.y == 0:
+		$Cheesecake_Ani.play("IDLE")
 		
 	move_vec = move_vec.normalized()
 	move_and_collide(move_vec * MOVE_SPEED * delta)
