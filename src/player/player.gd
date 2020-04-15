@@ -36,11 +36,21 @@ func _physics_process(delta):
 	if Input.is_action_pressed("move_up"):
 		move_vec.y -= speed
 		currentDir = DIR.up
-		$Cheesecake_Ani.play("RUN_W")
+		if Input.is_action_pressed("move_right"):
+			$Cheesecake_Ani.play("RUN_D")
+		elif Input.is_action_pressed("move_left"):
+			$Cheesecake_Ani.play("RUN_A")
+		else:
+			$Cheesecake_Ani.play("RUN_W")
 	if Input.is_action_pressed("move_down"):
 		currentDir = DIR.down
 		move_vec.y += speed
-		$Cheesecake_Ani.play("RUN_S")
+		if Input.is_action_pressed("move_right"):
+			$Cheesecake_Ani.play("RUN_D")
+		elif Input.is_action_pressed("move_left"):
+			$Cheesecake_Ani.play("RUN_A")
+		else:
+			$Cheesecake_Ani.play("RUN_S")
 	if Input.is_action_pressed("move_left"):
 		currentDir = DIR.left
 		move_vec.x -= speed
@@ -49,6 +59,7 @@ func _physics_process(delta):
 		currentDir = DIR.right
 		move_vec.x += speed
 		$Cheesecake_Ani.play("RUN_D")
+		
 	if Input.is_action_just_released("idle"):
 		$Cheesecake_Ani.play("IDLE")
 
