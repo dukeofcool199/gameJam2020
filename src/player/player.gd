@@ -43,9 +43,6 @@ func _physics_process(delta):
 		
 	move_vec = move_vec.normalized()
 	move_and_collide(move_vec * MOVE_SPEED * delta)
-   
-	var look_vec = get_global_mouse_position() - global_position
-	sprite.global_rotation = atan2(look_vec.y, look_vec.x)
 	camera.global_position = global_position
 	
 func _process(delta):
