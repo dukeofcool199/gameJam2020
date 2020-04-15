@@ -5,8 +5,13 @@ onready var raycast = $RayCast2D
 onready var camera: Camera2D = $Camera2D
 onready var anim_player: AnimationPlayer = $AnimationPlayer
 onready var sprite: = $Cheesecake_Ani
-var ingredients = 0
+
 onready var minion = preload("res://src/Agents/Minion.tscn")
+
+#ingredient inventories
+var butter = 0
+var creameCheese = 0
+var crackers = 0
 
 signal value_changed(val)
 signal set_max_value(maximum)
@@ -44,8 +49,11 @@ func _physics_process(delta):
 	camera.global_position = global_position
 	
 func _process(delta):
-	if Input.is_action_just_pressed("spawn_minion"):
+	if Input.is_action_just_pressed("spawn_minion") and self.creameCheese > 0 and self.butter > 0 and self.crackers > 0:
 		get_parent().add_child(minion.instance())
+		self.butter -= 1
+		self.creameCheese -= 1
+		self.crackers -= 1
 	
 func i_am_minion():
 	pass	
@@ -56,9 +64,18 @@ func take_damage(amount: int) -> void:
 	if(self.health <= 0):
 		die()
 		
-func add_ingredient() -> void:
-	self.ingredients += 1
-	print(self.ingredients)
+func add_ingredient(type) -> void:
+	match type:
+		0:
+			self.butter += 1
+		1:
+			self.creameCheese += 1
+		2:
+			self.crackers += 1
+			
+	print("butter: "+str(self.butter))
+	print("cheese: "+str(self.creameCheese))
+	print("crackers: "+str(self.crackers))
 	#$RichTextLabel.add_text("self.ingredients")
 
 func die() -> void:

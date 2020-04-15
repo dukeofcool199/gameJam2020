@@ -74,5 +74,4 @@ shape = SubResource( 1 )
 scale = Vector2( 0.06, 0.06 )
 frames = SubResource( 2 )
 animation = "A_KEY"
-frame = 1
 playing = true

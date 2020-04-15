@@ -6,12 +6,13 @@ const BUTTER = 0
 const CREAMCHEESE = 1
 const CRACKER = 2
 var type
+onready var rng = RandomNumberGenerator.new()
 
 
 func _ready():
-	var rng = RandomNumberGenerator.new()
+
 	rng.randomize()
-	type = rng.randi_range(1, 2)
+	type = rng.randi_range(0, 2)
 	print(type)
 	if type == self.BUTTER:
 		sprite.texture = load("res://assets/tempAssets/butter.png")
@@ -26,7 +27,7 @@ func _ready():
 
 func _on_ingredient_body_entered(body):
 	if "goodGuy" in body:
-		player.add_ingredient()
+		player.add_ingredient(self.type)
 		self.get_parent().remove_child(self)
 
 func _process(delta):
