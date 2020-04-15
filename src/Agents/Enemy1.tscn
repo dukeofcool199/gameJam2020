@@ -53,5 +53,4 @@ position = Vector2( -7.66785, 4.41174 )
 scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 2 )
 animation = "WALKL"
-frame = 3
 playing = true

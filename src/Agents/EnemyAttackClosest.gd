@@ -26,10 +26,17 @@ func _physics_process(delta: float) -> void:
 				set_physics_process(false)
 				yield(get_tree().create_timer(1), "timeout")
 				set_physics_process(true)
-	$ENEMYANIM.play("WALKR")
 	_velocity = Movement.arrive_to(_velocity,global_position,target_global_position,max_speed)
 	_velocity = move_and_slide(_velocity)
 	sprite.rotation = _velocity.angle()
+	
+	#ENEMY WALKING ANIMATION
+	var thresh = 50
+	if _velocity.x < 0-thresh and _velocity.y < 0 or _velocity.x < 0-thresh and _velocity.y > 0 or _velocity.x < 0-thresh:
+		$ENEMYANIM.play("WALKR")
+	elif _velocity.x > thresh and _velocity.y < 0 or _velocity.x > thresh and _velocity.y > 0 or _velocity.x > thresh:
+		$ENEMYANIM.play("WALKL")
+
 	
 func stop_moving() -> void:
 	set_physics_process(false)

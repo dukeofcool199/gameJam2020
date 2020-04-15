@@ -49,6 +49,17 @@ func _physics_process(delta: float) -> void:
 			# If enemy I might need to flee or attack
 			# If friendly I need to do other actions.
 		sprite.rotation = _velocity.angle()
+	
+	#MINION WALKING ANIMATION
+	var thresh = 50
+	if _velocity.x < 0-thresh and _velocity.y < 0 or _velocity.x < 0-thresh and _velocity.y > 0 or _velocity.x < 0-thresh:
+		$MIN_ANIM.play("A_KEY")
+	elif _velocity.x > thresh and _velocity.y < 0 or _velocity.x > thresh and _velocity.y > 0 or _velocity.x > thresh:
+		$MIN_ANIM.play("D_KEY")
+	elif _velocity.y > 0:
+		$MIN_ANIM.play("S_KEY")
+	elif _velocity.y < 0:
+		$MIN_ANIM.play("W_KEY")
 
 func start_moving() -> void:
 	_is_moving = true
