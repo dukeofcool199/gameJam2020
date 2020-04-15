@@ -28,7 +28,8 @@ func _ready():
 func _on_ingredient_body_entered(body):
 	if "goodGuy" in body:
 		player.add_ingredient(self.type)
-		self.get_parent().remove_child(self)
+		if self != null and self.get_parent() != null:
+			self.get_parent().remove_child(self)
 
 func _process(delta):
 	self.rotation += 1 * delta
