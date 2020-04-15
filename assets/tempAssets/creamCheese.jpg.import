@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/butter.png-2b4c09691c1167bfac53cbffc1e82862.stex"
+path="res://.import/creamCheese.jpg-aadede05d009a4d4cbdf9909496bf927.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/butter.png"
-dest_files=[ "res://.import/butter.png-2b4c09691c1167bfac53cbffc1e82862.stex" ]
+source_file="res://assets/tempAssets/creamCheese.jpg"
+dest_files=[ "res://.import/creamCheese.jpg-aadede05d009a4d4cbdf9909496bf927.stex" ]
 
 [params]
 
