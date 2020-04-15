@@ -1,0 +1,19 @@
+extends Area2D
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
+onready var player = self.get_parent().find_node("player")
+
+
+func _on_ingredient_body_entered(body):
+	if "goodGuy" in body:
+<<<<<<< HEAD
+		player.add_ingredient()	
+=======
+		player.add_ingredient()
+>>>>>>> master
+		self.get_parent().remove_child(self)
+
+func _process(delta):
+	self.rotation += 1 * delta

@@ -48,7 +48,6 @@ func _physics_process(delta: float) -> void:
 			# I collided with something
 			# If enemy I might need to flee or attack
 			# If friendly I need to do other actions.
-		sprite.rotation = _velocity.angle()
 
 func start_moving() -> void:
 	_is_moving = true
