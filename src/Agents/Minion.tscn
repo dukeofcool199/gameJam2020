@@ -44,6 +44,11 @@ animations = [ {
 "name": "IDLE",
 "speed": 12.0
 }, {
+"frames": [ ExtResource( 7 ), ExtResource( 12 ), ExtResource( 9 ), ExtResource( 8 ), ExtResource( 14 ), ExtResource( 13 ), ExtResource( 11 ), ExtResource( 16 ), ExtResource( 10 ), ExtResource( 15 ) ],
+"loop": true,
+"name": "W_KEY",
+"speed": 12.0
+}, {
 "frames": [ ExtResource( 21 ), ExtResource( 28 ), ExtResource( 22 ) ],
 "loop": true,
 "name": "A_KEY",
@@ -53,6 +58,11 @@ animations = [ {
 "loop": true,
 "name": "S_KEY",
 "speed": 12.0
+}, {
+"frames": [ ExtResource( 21 ), ExtResource( 28 ), ExtResource( 22 ) ],
+"loop": true,
+"name": "A_KEY",
+"speed": 9.0
 }, {
 "frames": [ ExtResource( 7 ), ExtResource( 12 ), ExtResource( 9 ), ExtResource( 8 ), ExtResource( 14 ), ExtResource( 13 ), ExtResource( 11 ), ExtResource( 16 ), ExtResource( 10 ), ExtResource( 15 ) ],
 "loop": true,
@@ -65,7 +75,7 @@ animations = [ {
 "speed": 9.0
 } ]
 
-[node name="KinematicBody2D" type="KinematicBody2D"]
+[node name="minionBody" type="KinematicBody2D"]
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -79,4 +89,5 @@ texture = ExtResource( 1 )
 scale = Vector2( 0.06, 0.06 )
 frames = SubResource( 2 )
 animation = "A_KEY"
+frame = 2
 playing = true
