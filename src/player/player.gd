@@ -71,7 +71,7 @@ func _physics_process(delta):
 	camera.global_position = global_position
 	
 func _process(delta):
-	if Input.is_action_pressed("spawn_minion"):# and self.creameCheese > 0 and self.butter > 0 and self.crackers > 0:
+	if Input.is_action_pressed("spawn_minion") and self.creameCheese > 0 and self.butter > 0 and self.crackers > 0:
 		
 		var posOffset = 50
 		var pos = self.position

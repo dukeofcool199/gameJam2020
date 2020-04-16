@@ -27,7 +27,7 @@ func _ready():
 
 func _on_ingredient_body_entered(body):
 	if "goodGuy" in body:
-		player.add_ingredient()
+		player.add_ingredient(self.type)
 		self.get_parent().remove_child(self)
 	elif "badGuy" in body:
 		self.get_parent().get_child(body.get_index()).wait = 1
