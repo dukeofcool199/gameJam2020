@@ -15,14 +15,14 @@ func _ready():
 	type = rng.randi_range(0, 2)
 	print(type)
 	if type == self.BUTTER:
-		sprite.texture = load("res://assets/tempAssets/butter.png")
+		sprite.texture = load("res://assets/tempAssets/INGREDIENTS/BUTTER.jpg")
 		
 	elif type == self.CREAMCHEESE:
-		sprite.texture = load("res://assets/tempAssets/creamCheese.jpg")
+		sprite.texture = load("res://assets/tempAssets/INGREDIENTS/CREAMCHEESE.jpg")
 		pass
 	
 	elif type == self.CRACKER:
-		sprite.texture = load("res://assets/tempAssets/grahamCracker.jpg")
+		sprite.texture = load("res://assets/tempAssets/INGREDIENTS/GRAHAM.jpg")
 		pass
 
 func _on_ingredient_body_entered(body):
