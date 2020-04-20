@@ -4,12 +4,42 @@ onready var sprite: Sprite = $Enemy1
 
 onready var player = get_parent().get_node("player")
 
+onready var MAX_POSX = 800 #will set these dynamically or based off parent later
+onready var MAX_POSY = 600
+
 const DISTANCE_THRESHOLD: = 3.0
 
 export var max_speed: = 100.0
 
 var target_global_position: = Vector2.ZERO setget set_target_global_position
 var _velocity: = Vector2.ZERO
+var away_dist = 100
+var badGuy = 0
+var wait = 0
+
+var random_count = 0
+
+var type = 2 
+# 0: attack closest, 
+# 1: attack Big cheese, 
+# 2: stay right from closest
+# 3: stay left from closest
+# 4: stay up from closest
+# 5: stay down from closest
+# 6: Move randomly
+# 7: Eat Closest ingredient
+
+var function_dict = { close = funcref(self, "attack_closest"), 
+big_cheese = funcref(self, "attack_player"), 
+right = funcref(self, "stay_right"), 
+left = funcref(self, "stay_left"), 
+up = funcref(self, "stay_up"), 
+down = funcref(self, "stay_down"), 
+rand = funcref(self, "move_random"), 
+ingreds = funcref(self, "closest_ingredient")}
+
+func _ready():
+	self.type = int(rand_range(0,56)) % 8
 
 func _physics_process(delta: float) -> void:
 	if get_parent().game_over:
@@ -17,15 +47,17 @@ func _physics_process(delta: float) -> void:
 		return
 	self.target_global_position = find_target_position()
 	if global_position.distance_to(target_global_position) < DISTANCE_THRESHOLD:
-		stop_moving()
+		return
 	if get_slide_count() > 0:
 			var object = get_slide_collision(0).collider
 			if object != null and object.has_method("i_am_minion"):
 				$ENEMYANIM.play("SLEEP")
 				object.take_damage(100)
-				set_physics_process(false)
-				yield(get_tree().create_timer(1), "timeout")
-				set_physics_process(true)
+				sleep(1)
+	if wait == 1:
+		sleep(wait)
+		wait = 0
+		return
 	_velocity = Movement.arrive_to(_velocity,global_position,target_global_position,max_speed)
 	_velocity = move_and_slide(_velocity)
 	sprite.rotation = _velocity.angle()
@@ -37,9 +69,10 @@ func _physics_process(delta: float) -> void:
 	elif _velocity.x > thresh and _velocity.y < 0 or _velocity.x > thresh and _velocity.y > 0 or _velocity.x > thresh:
 		$ENEMYANIM.play("WALKL")
 
-	
-func stop_moving() -> void:
+func sleep(time: int) -> void:
 	set_physics_process(false)
+	yield(get_tree().create_timer(time), "timeout")
+	set_physics_process(true)
 
 func set_target_global_position(value: Vector2) -> void:
 	target_global_position = value
@@ -47,11 +80,54 @@ func set_target_global_position(value: Vector2) -> void:
 
 # This attacks closest PC
 func find_target_position() -> Vector2:
+	var dict_values = function_dict.keys()
+	return function_dict[dict_values[type]].call_func()
+
+func attack_closest() -> Vector2:
 	var actors = get_parent().get_children()
 	var close_distance = INF
 	var close_actor = null
 	for actor in actors:
 		if actor.has_method("i_am_minion"):
+			var temp_dist = global_position.distance_to(actor.global_position)
+			if close_distance > temp_dist:
+				close_distance = temp_dist
+				close_actor = actor
+	if close_actor != null:
+		return close_actor.global_position
+	return global_position
+
+func attack_player() -> Vector2:
+	if player != null:
+		return player.global_position
+	return global_position
+
+func stay_right() -> Vector2:
+	return attack_closest() + Vector2(away_dist,0)
+
+func stay_left() -> Vector2:
+	return attack_closest() + Vector2(-away_dist,0)
+
+func stay_up() -> Vector2:
+	return attack_closest() + Vector2(0,-away_dist)
+
+func stay_down() -> Vector2:
+	return attack_closest() + Vector2(0,away_dist)
+
+func move_random() -> Vector2:
+	if random_count < 100:
+		random_count += 1
+		return self.target_global_position
+	else:
+		random_count = 0
+		return Vector2(rand_range(0, self.MAX_POSX),rand_range(0, self.MAX_POSY))
+
+func closest_ingredient() -> Vector2:
+	var actors = get_parent().get_children()
+	var close_distance = INF
+	var close_actor = null
+	for actor in actors:
+		if actor.has_method("_on_ingredient_body_entered"):
 			var temp_dist = global_position.distance_to(actor.global_position)
 			if close_distance > temp_dist:
 				close_distance = temp_dist
