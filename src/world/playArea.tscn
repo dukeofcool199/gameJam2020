@@ -14,7 +14,7 @@ script = ExtResource( 1 )
 [node name="ParallaxLayer" type="ParallaxLayer" parent="BACKGROUND"]
 
 [node name="Sprite" type="Sprite" parent="BACKGROUND/ParallaxLayer"]
-position = Vector2( 591.375, 309.635 )
-scale = Vector2( 0.469994, 0.333618 )
+position = Vector2( 566.268, 334.74 )
+scale = Vector2( 0.622149, 0.525784 )
 texture = ExtResource( 2 )
 [connection signal="timeout" from="BACKGROUND/Timer" to="." method="_on_Timer_timeout"]

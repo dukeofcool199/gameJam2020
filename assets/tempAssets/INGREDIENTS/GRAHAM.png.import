@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/CREAMCHEESE.jpg-e03a9ea7f6e7187944f6ee2dba196309.stex"
+path="res://.import/GRAHAM.png-9daacf9b41ed766366b5e79c79970f8f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tempAssets/INGREDIENTS/CREAMCHEESE.jpg"
-dest_files=[ "res://.import/CREAMCHEESE.jpg-e03a9ea7f6e7187944f6ee2dba196309.stex" ]
+source_file="res://assets/tempAssets/INGREDIENTS/GRAHAM.png"
+dest_files=[ "res://.import/GRAHAM.png-9daacf9b41ed766366b5e79c79970f8f.stex" ]
 
 [params]
 

@@ -15,14 +15,14 @@ func _ready():
 	type = rng.randi_range(0, 2)
 	print(type)
 	if type == self.BUTTER:
-		sprite.texture = load("res://assets/tempAssets/INGREDIENTS/BUTTER.jpg")
+		sprite.texture = load("res://assets/tempAssets/INGREDIENTS/BUTTER.png")
 		
 	elif type == self.CREAMCHEESE:
-		sprite.texture = load("res://assets/tempAssets/INGREDIENTS/CREAMCHEESE.jpg")
+		sprite.texture = load("res://assets/tempAssets/INGREDIENTS/CREAMCHEESE.png")
 		pass
 	
 	elif type == self.CRACKER:
-		sprite.texture = load("res://assets/tempAssets/INGREDIENTS/GRAHAM.jpg")
+		sprite.texture = load("res://assets/tempAssets/INGREDIENTS/GRAHAM.png")
 		pass
 
 func _on_ingredient_body_entered(body):
@@ -31,7 +31,8 @@ func _on_ingredient_body_entered(body):
 		self.get_parent().remove_child(self)
 	elif "badGuy" in body:
 		self.get_parent().get_child(body.get_index()).wait = 1
-		self.get_parent().remove_child(self)
+		if self != null:
+			self.get_parent().remove_child(self)
 
 func _process(delta):
 	self.rotation += 1 * delta

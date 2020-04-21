@@ -4,6 +4,7 @@ onready var sprite: Sprite = $Enemy1
 
 onready var player = get_parent().get_node("player")
 
+
 onready var MAX_POSX = 800 #will set these dynamically or based off parent later
 onready var MAX_POSY = 600
 
@@ -29,6 +30,17 @@ var type = 2
 # 6: Move randomly
 # 7: Eat Closest ingredient
 
+var activeAnims
+onready var worker1Anims = {"sleep":"W1_SLEEP","left":"W1_LEFT","right":"W1_RIGHT"}
+onready var worker2Anims = {"sleep":"W2_SLEEP","left":"W2_LEFT","right":"W2_RIGHT"}
+onready var worker3Anims = {"sleep":"W3_SLEEP","left":"W3_LEFT","right":"W3_RIGHT"}
+onready var rng = RandomNumberGenerator.new()
+
+const WONE = 0
+const WTWO = 1
+const WTHREE = 2
+
+
 var function_dict = { close = funcref(self, "attack_closest"), 
 big_cheese = funcref(self, "attack_player"), 
 right = funcref(self, "stay_right"), 
@@ -40,6 +52,19 @@ ingreds = funcref(self, "closest_ingredient")}
 
 func _ready():
 	self.type = int(rand_range(0,56)) % 8
+	rng.randomize()
+	type = rng.randi_range(0, 2)
+	print(type)
+	if type == self.WONE:
+		activeAnims = worker1Anims
+		
+	elif type == self.WTWO:
+		activeAnims = worker2Anims
+		pass
+	
+	elif type == self.WTHREE:
+		activeAnims = worker3Anims
+		pass
 
 func _physics_process(delta: float) -> void:
 	if get_parent().game_over:
@@ -51,7 +76,7 @@ func _physics_process(delta: float) -> void:
 	if get_slide_count() > 0:
 			var object = get_slide_collision(0).collider
 			if object != null and object.has_method("i_am_minion"):
-				$ENEMYANIM.play("SLEEP")
+				$ENEMYANIM.play(activeAnims["sleep"])
 				object.take_damage(100)
 				sleep(1)
 	if wait == 1:
@@ -65,9 +90,9 @@ func _physics_process(delta: float) -> void:
 	#ENEMY WALKING ANIMATION
 	var thresh = 50
 	if _velocity.x < 0-thresh and _velocity.y < 0 or _velocity.x < 0-thresh and _velocity.y > 0 or _velocity.x < 0-thresh:
-		$ENEMYANIM.play("WALKR")
+		$ENEMYANIM.play(activeAnims["right"])
 	elif _velocity.x > thresh and _velocity.y < 0 or _velocity.x > thresh and _velocity.y > 0 or _velocity.x > thresh:
-		$ENEMYANIM.play("WALKL")
+		$ENEMYANIM.play(activeAnims["left"])
 
 func sleep(time: int) -> void:
 	set_physics_process(false)
