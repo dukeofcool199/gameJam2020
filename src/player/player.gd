@@ -15,9 +15,13 @@ onready var minion = preload("res://src/Agents/Minion.tscn")
 var butter = 0
 var creameCheese = 0
 var crackers = 0
+var total_collected_ingredients = 0
 
 signal value_changed(val)
 signal set_max_value(maximum)
+signal butter_changed(butter_value)
+signal creamcheese_changed(cc_value)
+signal crackers_changed(crackers_value)
 const goodGuy = 0
 
 var health: = 1000
@@ -28,6 +32,9 @@ func _ready():
 	camera.global_position = global_position
 	emit_signal("set_max_value", self.health)
 	emit_signal("value_changed", self.health)
+	emit_signal("butter_changed", self.butter)
+	emit_signal("creamcheese_changed", self.creameCheese)
+	emit_signal("crackers_changed", self.crackers)
  
 func _physics_process(delta):
 	var speed = 1
@@ -89,8 +96,11 @@ func _process(delta):
 
 		get_parent().add_child(newMinion)
 		self.butter -= 1
+		emit_signal("butter_changed", self.butter)
 		self.creameCheese -= 1
+		emit_signal("creamcheese_changed", self.creameCheese)
 		self.crackers -= 1
+		emit_signal("crackers_changed", self.crackers)
 	
 func i_am_minion():
 	pass	
@@ -105,14 +115,19 @@ func add_ingredient(type) -> void:
 	match type:
 		0:
 			self.butter += 1
+			emit_signal("butter_changed", self.butter)
 		1:
 			self.creameCheese += 1
+			emit_signal("creamcheese_changed", self.creameCheese)
 		2:
 			self.crackers += 1
+			emit_signal("crackers_changed", self.crackers)
 			
 	print("butter: "+str(self.butter))
 	print("cheese: "+str(self.creameCheese))
 	print("crackers: "+str(self.crackers))
+	self.total_collected_ingredients += 1
+	print("progress: "+str(self.total_collected_ingredients))
 	#$RichTextLabel.add_text("self.ingredients")
 
 func die() -> void:
@@ -122,3 +137,7 @@ func die() -> void:
 	global_rotation = atan2(0,0)
 	anim_player.play("fade_in")
 	return
+
+
+func _on_player_butter_changed(butter_value):
+	pass # Replace with function body.

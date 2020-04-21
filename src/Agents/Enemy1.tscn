@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://assets/enemy.png" type="Texture" id=1]
 [ext_resource path="res://src/Agents/EnemyAttackClosest.gd" type="Script" id=2]
@@ -14,6 +14,9 @@
 [ext_resource path="res://ANIMATIONS/WORKER_ANIM/WORKER_1_ANIM/WORKER_1_ANIM_0002.png" type="Texture" id=12]
 [ext_resource path="res://ANIMATIONS/WORKER_ANIM/WORKER_1L_ANIM/WORKER_1L_ANIM_0002.png" type="Texture" id=13]
 [ext_resource path="res://ANIMATIONS/WORKER_ANIM/WORKER_1_ANIM/WORKER_1_ANIM_0003.png" type="Texture" id=14]
+[ext_resource path="res://assets/health/fill.png" type="Texture" id=15]
+[ext_resource path="res://assets/health/bg.png" type="Texture" id=16]
+[ext_resource path="res://src/Agents/enemyHealth.gd" type="Script" id=17]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 48.8418
@@ -25,15 +28,15 @@ animations = [ {
 "name": "WALKL",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 7 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 8 ) ],
-"loop": true,
-"name": "SLEEP",
-"speed": 8.0
-}, {
 "frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 12 ), ExtResource( 14 ) ],
 "loop": true,
 "name": "WALKR",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "SLEEP",
+"speed": 8.0
 } ]
 
 [node name="KinematicBody2D" type="KinematicBody2D"]
@@ -53,4 +56,20 @@ position = Vector2( -7.66785, 4.41174 )
 scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 2 )
 animation = "WALKL"
+frame = 3
 playing = true
+
+[node name="enemyHealth" type="TextureProgress" parent="ENEMYANIM"]
+margin_left = -151.458
+margin_top = -443.109
+margin_right = 244.542
+margin_bottom = -390.109
+value = 100.0
+texture_under = ExtResource( 16 )
+texture_progress = ExtResource( 15 )
+script = ExtResource( 17 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="set_max_value" from="." to="ENEMYANIM/enemyHealth" method="_on_KinematicBody2D_set_max_value"]
+[connection signal="value_changed" from="." to="ENEMYANIM/enemyHealth" method="_on_KinematicBody2D_value_changed"]

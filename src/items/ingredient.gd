@@ -13,7 +13,6 @@ func _ready():
 
 	rng.randomize()
 	type = rng.randi_range(0, 2)
-	print(type)
 	if type == self.BUTTER:
 		sprite.texture = load("res://assets/tempAssets/butter.png")
 		
@@ -26,10 +25,10 @@ func _ready():
 		pass
 
 func _on_ingredient_body_entered(body):
-	if "goodGuy" in body:
+	if "goodGuy" in body and self.get_parent() != null:
 		player.add_ingredient(self.type)
 		self.get_parent().remove_child(self)
-	elif "badGuy" in body:
+	elif "badGuy" in body and self.get_parent() != null:
 		self.get_parent().get_child(body.get_index()).wait = 1
 		self.get_parent().remove_child(self)
 

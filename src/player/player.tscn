@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://ANIMATIONS/IDLE/IDLE_0004.png" type="Texture" id=1]
 [ext_resource path="res://src/player/player.gd" type="Script" id=2]
@@ -39,6 +39,10 @@
 [ext_resource path="res://ANIMATIONS/D_KEY/D_KEY_0002.png" type="Texture" id=37]
 [ext_resource path="res://ANIMATIONS/S_KEY/S_KEY_0000.png" type="Texture" id=38]
 [ext_resource path="res://ANIMATIONS/S_KEY/S_KEY_0001.png" type="Texture" id=39]
+[ext_resource path="res://src/UI/GUI.tscn" type="PackedScene" id=40]
+[ext_resource path="res://src/player/RichTextLabel.gd" type="Script" id=41]
+[ext_resource path="res://src/player/CreamCheeseCount.gd" type="Script" id=42]
+[ext_resource path="res://src/player/GrahamCrackerCount.gd" type="Script" id=43]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -52,11 +56,6 @@ animations = [ {
 "name": "RUN_S",
 "speed": 12.0
 }, {
-"frames": [ ExtResource( 16 ), ExtResource( 18 ), ExtResource( 23 ) ],
-"loop": true,
-"name": "RUN_A",
-"speed": 9.0
-}, {
 "frames": [ ExtResource( 35 ), ExtResource( 36 ), ExtResource( 37 ) ],
 "loop": true,
 "name": "RUN_D",
@@ -66,6 +65,11 @@ animations = [ {
 "loop": true,
 "name": "RUN_W",
 "speed": 12.0
+}, {
+"frames": [ ExtResource( 16 ), ExtResource( 18 ), ExtResource( 23 ) ],
+"loop": true,
+"name": "RUN_A",
+"speed": 9.0
 } ]
 
 [sub_resource type="CircleShape2D" id=2]
@@ -104,7 +108,7 @@ script = ExtResource( 2 )
 scale = Vector2( 0.07, 0.07 )
 frames = SubResource( 1 )
 animation = "IDLE"
-frame = 3
+frame = 6
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -116,7 +120,6 @@ cast_to = Vector2( 2000, 0 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
-smoothing_enabled = true
 smoothing_speed = 2.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Camera2D"]
@@ -154,5 +157,44 @@ script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Interface" parent="." instance=ExtResource( 40 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -511.0
+margin_top = -300.0
+
+[node name="ButterCount" type="RichTextLabel" parent="Interface"]
+margin_left = 40.9872
+margin_top = 5.0
+margin_right = 1013.99
+margin_bottom = 20.0
+script = ExtResource( 41 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CreamCheeseCount" type="RichTextLabel" parent="Interface"]
+margin_left = 40.9231
+margin_top = 32.0
+margin_right = 1013.0
+margin_bottom = 47.0
+script = ExtResource( 42 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GrahamCrackerCount" type="RichTextLabel" parent="Interface"]
+margin_left = 40.0
+margin_top = 59.0
+margin_right = 1013.0
+margin_bottom = 74.0
+script = ExtResource( 43 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="butter_changed" from="." to="Interface/ButterCount" method="_on_player_butter_changed"]
+[connection signal="crackers_changed" from="." to="Interface/GrahamCrackerCount" method="_on_player_crackers_changed"]
+[connection signal="creamcheese_changed" from="." to="Interface/CreamCheeseCount" method="_on_player_creamcheese_changed"]
 [connection signal="set_max_value" from="." to="HealthBar" method="_on_player_set_max_value"]
 [connection signal="value_changed" from="." to="HealthBar" method="_on_player_value_changed"]

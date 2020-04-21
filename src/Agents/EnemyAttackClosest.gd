@@ -16,6 +16,10 @@ var _velocity: = Vector2.ZERO
 var away_dist = 100
 var badGuy = 0
 var wait = 0
+var sleep_length = 1
+
+signal value_changed(val)
+signal set_max_value(maximum)
 
 var random_count = 0
 
@@ -40,6 +44,8 @@ ingreds = funcref(self, "closest_ingredient")}
 
 func _ready():
 	self.type = int(rand_range(0,56)) % 8
+	emit_signal("set_max_value", 60-(self.sleep_length*10))
+	emit_signal("value_changed", 60-(self.sleep_length*10))
 
 func _physics_process(delta: float) -> void:
 	if get_parent().game_over:
@@ -53,7 +59,12 @@ func _physics_process(delta: float) -> void:
 			if object != null and object.has_method("i_am_minion"):
 				$ENEMYANIM.play("SLEEP")
 				object.take_damage(100)
-				sleep(1)
+				sleep(self.sleep_length)
+				self.sleep_length += 1
+				emit_signal("value_changed", 60-(self.sleep_length*10))
+				if(self.sleep_length == 6):
+					set_physics_process(false)
+					self.get_parent().remove_child(self)
 	if wait == 1:
 		sleep(wait)
 		wait = 0
