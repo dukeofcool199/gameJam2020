@@ -107,6 +107,7 @@ script = ExtResource( 1 )
 scale = Vector2( 0.07, 0.07 )
 frames = SubResource( 1 )
 animation = "IDLE"
+frame = 7
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -148,6 +149,8 @@ margin_left = -511.0
 margin_top = -300.0
 
 [node name="ButterCount" type="RichTextLabel" parent="Interface"]
+modulate = Color( 0, 0, 0, 1 )
+self_modulate = Color( 0, 0, 0, 1 )
 margin_left = 40.9872
 margin_top = 5.0
 margin_right = 1013.99
@@ -158,6 +161,8 @@ __meta__ = {
 }
 
 [node name="CreamCheeseCount" type="RichTextLabel" parent="Interface"]
+modulate = Color( 0, 0, 0, 1 )
+self_modulate = Color( 0, 0, 0, 1 )
 margin_left = 40.9231
 margin_top = 32.0
 margin_right = 1013.0
@@ -168,6 +173,8 @@ __meta__ = {
 }
 
 [node name="GrahamCrackerCount" type="RichTextLabel" parent="Interface"]
+modulate = Color( 0, 0, 0, 1 )
+self_modulate = Color( 0, 0, 0, 1 )
 margin_left = 40.0
 margin_top = 59.0
 margin_right = 1013.0

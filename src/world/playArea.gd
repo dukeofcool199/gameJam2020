@@ -28,8 +28,10 @@ func _on_Timer_timeout():
 	#Here we will determine if we should spawn enemies.
 	# Get the number of collected ingredients
 	var progress = self.get_parent().get_node("player").total_collected_ingredients
+	var enemyGen = rand_range(0,100)
 	# Adjust maybe instead just get current collect ingredients or determine how many until new enemy spawns
 	if (self.prev_progress != progress && progress % 7 == 0):
+	#if enemyGen > 50:
 		var newEnemy = load("res://src/Agents/Enemy1.tscn").instance()
 		newEnemy.position = Vector2(rand_range(0,MAX_POSX),rand_range(0,MAX_POSY))
 		self.get_parent().add_child(newEnemy)
