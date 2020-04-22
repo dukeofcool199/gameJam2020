@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/Game.gd" type="Script" id=1]
 [ext_resource path="res://src/world/playArea.tscn" type="PackedScene" id=2]
@@ -6,6 +6,9 @@
 [ext_resource path="res://src/UI/Target.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/Agents/Minion.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/cheesecake_factory_beats.wav" type="AudioStream" id=6]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 6.99536, 300.518 )
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
@@ -29,3 +32,29 @@ position = Vector2( 102.61, 198.797 )
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
 autoplay = true
+
+[node name="westWall" type="StaticBody2D" parent="."]
+position = Vector2( -2.272, 300.228 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="westWall"]
+shape = SubResource( 1 )
+
+[node name="eastWall" type="StaticBody2D" parent="."]
+position = Vector2( 1025.37, 300.228 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="eastWall"]
+shape = SubResource( 1 )
+
+[node name="southWall" type="StaticBody2D" parent="."]
+position = Vector2( 526.248, 645.408 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="southWall"]
+scale = Vector2( 77.9, 0.17 )
+shape = SubResource( 1 )
+
+[node name="southWall2" type="StaticBody2D" parent="."]
+position = Vector2( 514.108, -40.56 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="southWall2"]
+scale = Vector2( 77.9, 0.17 )
+shape = SubResource( 1 )
