@@ -60,11 +60,9 @@ func _ready():
 		
 	elif type == self.WTWO:
 		activeAnims = worker2Anims
-		pass
 	
 	elif type == self.WTHREE:
 		activeAnims = worker3Anims
-		pass
 
 func _physics_process(delta: float) -> void:
 	if get_parent().game_over:
