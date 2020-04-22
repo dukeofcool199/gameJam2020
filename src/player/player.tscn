@@ -28,15 +28,15 @@
 [ext_resource path="res://ANIMATIONS/W_KEY/W_KEY_0004.png" type="Texture" id=26]
 [ext_resource path="res://ANIMATIONS/W_KEY/W_KEY_0005.png" type="Texture" id=27]
 [ext_resource path="res://ANIMATIONS/W_KEY/W_KEY_0006.png" type="Texture" id=28]
-[ext_resource path="res://ANIMATIONS/W_KEY/W_KEY_0007.png" type="Texture" id=39]
+[ext_resource path="res://ANIMATIONS/W_KEY/W_KEY_0007.png" type="Texture" id=29]
 [ext_resource path="res://ANIMATIONS/W_KEY/W_KEY_0008.png" type="Texture" id=30]
 [ext_resource path="res://ANIMATIONS/W_KEY/W_KEY_0009.png" type="Texture" id=31]
 [ext_resource path="res://ANIMATIONS/D_KEY/D_KEY_0000.png" type="Texture" id=32]
 [ext_resource path="res://ANIMATIONS/D_KEY/D_KEY_0001.png" type="Texture" id=33]
 [ext_resource path="res://ANIMATIONS/D_KEY/D_KEY_0002.png" type="Texture" id=34]
 [ext_resource path="res://assets/PngItem_214421.png" type="Texture" id=35]
-[ext_resource path="res://assets/health/fill.png" type="Texture" id=36]
-[ext_resource path="res://assets/health/bg.png" type="Texture" id=37]
+[ext_resource path="res://assets/health/bg.png" type="Texture" id=36]
+[ext_resource path="res://assets/health/fill.png" type="Texture" id=37]
 [ext_resource path="res://src/player/HealthBar.gd" type="Script" id=38]
 [ext_resource path="res://src/UI/GUI.tscn" type="PackedScene" id=39]
 [ext_resource path="res://src/player/RichTextLabel.gd" type="Script" id=40]
@@ -141,7 +141,7 @@ anims/fade_in = SubResource( 3 )
 
 [node name="Game Over" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0 )
-texture = ExtResource( 2 )
+texture = ExtResource( 35 )
 
 [node name="HealthBar" type="TextureProgress" parent="."]
 margin_left = -49.2197
