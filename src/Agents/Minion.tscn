@@ -44,11 +44,6 @@ animations = [ {
 "name": "IDLE",
 "speed": 12.0
 }, {
-"frames": [ ExtResource( 7 ), ExtResource( 12 ), ExtResource( 9 ), ExtResource( 8 ), ExtResource( 14 ), ExtResource( 13 ), ExtResource( 11 ), ExtResource( 16 ), ExtResource( 10 ), ExtResource( 15 ) ],
-"loop": true,
-"name": "W_KEY",
-"speed": 12.0
-}, {
 "frames": [ ExtResource( 21 ), ExtResource( 28 ), ExtResource( 22 ) ],
 "loop": true,
 "name": "A_KEY",
@@ -59,20 +54,15 @@ animations = [ {
 "name": "S_KEY",
 "speed": 12.0
 }, {
-"frames": [ ExtResource( 21 ), ExtResource( 28 ), ExtResource( 22 ) ],
+"frames": [ ExtResource( 19 ), ExtResource( 29 ), ExtResource( 18 ) ],
 "loop": true,
-"name": "A_KEY",
+"name": "D_KEY",
 "speed": 9.0
 }, {
 "frames": [ ExtResource( 7 ), ExtResource( 12 ), ExtResource( 9 ), ExtResource( 8 ), ExtResource( 14 ), ExtResource( 13 ), ExtResource( 11 ), ExtResource( 16 ), ExtResource( 10 ), ExtResource( 15 ) ],
 "loop": true,
 "name": "W_KEY",
 "speed": 12.0
-}, {
-"frames": [ ExtResource( 19 ), ExtResource( 29 ), ExtResource( 18 ) ],
-"loop": true,
-"name": "D_KEY",
-"speed": 9.0
 } ]
 
 [node name="minionBody" type="KinematicBody2D"]
@@ -89,5 +79,5 @@ texture = ExtResource( 1 )
 scale = Vector2( 0.06, 0.06 )
 frames = SubResource( 2 )
 animation = "A_KEY"
-frame = 2
+frame = 1
 playing = true

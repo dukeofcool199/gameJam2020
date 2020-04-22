@@ -3,7 +3,7 @@ extends KinematicBody2D
 onready var sprite: Sprite = $Minion
 onready var player = get_parent().get_node("player")
 
-const DISTANCE_THRESHOLD: = 3.0
+const DISTANCE_THRESHOLD: = 50.0
 const PLAYER_DISTANCE_THRESHOLD: = 100.0
 
 const goodGuy = 0
