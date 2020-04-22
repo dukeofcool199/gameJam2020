@@ -75,7 +75,13 @@ func _physics_process(delta):
 	
 func _process(delta):
 	if Input.is_action_just_pressed("NUXMODE"):
-		self.NUX = 1
+		if self.NUX == 0:
+			self.find_node("nuxIndicator").show()
+			self.NUX = 1
+		else:
+			self.find_node("nuxIndicator").hide()
+			self.NUX = 0
+
 	if (Input.is_action_pressed("spawn_minion") and self.creameCheese > 0 
 	and self.butter > 0 and self.crackers > 0 
 	or NUX == 1 and Input.is_action_pressed("spawn_minion")):
