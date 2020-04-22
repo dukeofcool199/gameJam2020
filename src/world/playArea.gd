@@ -2,8 +2,8 @@ extends Node2D
 
 onready var timer = $BACKGROUND/Timer
 onready var loc = self.get_position_in_parent()
-onready var MAX_POSX = 2000 #will set these dynamically or based off parent later
-onready var MAX_POSY = 2000
+onready var MAX_POSX = 1500 #will set these dynamically or based off parent later
+onready var MAX_POSY = 1500
 onready var item = preload("res://src/items/ingredient.tscn")
 
 var prev_progress = 0
@@ -19,7 +19,8 @@ func _ready():
 
 
 func _on_Timer_timeout():
-	print("play area did a timer thing")
+	print(str(self.position))
+	print("play area did a timer thing: ")
 	var newItem = item.instance()
 	newItem.position = Vector2(rand_range(0,MAX_POSX),rand_range(0,MAX_POSY))
 	self.get_parent().add_child(newItem)
