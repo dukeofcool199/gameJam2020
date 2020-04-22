@@ -26,6 +26,8 @@ func _ready():
 		pass
 
 func _on_ingredient_body_entered(body):
+	if self == null or body == null:
+		return
 	if "goodGuy" in body:
 		player.add_ingredient(self.type)
 		self.get_parent().remove_child(self)
