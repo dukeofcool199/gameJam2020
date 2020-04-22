@@ -14,23 +14,26 @@ func _ready():
 	rng.randomize()
 	type = rng.randi_range(0, 2)
 	if type == self.BUTTER:
-		sprite.texture = load("res://assets/tempAssets/butter.png")
+		sprite.texture = load("res://assets/tempAssets/INGREDIENTS/BUTTER.png")
 		
 	elif type == self.CREAMCHEESE:
-		sprite.texture = load("res://assets/tempAssets/creamCheese.jpg")
+		sprite.texture = load("res://assets/tempAssets/INGREDIENTS/CREAMCHEESE.png")
 		pass
 	
 	elif type == self.CRACKER:
-		sprite.texture = load("res://assets/tempAssets/grahamCracker.jpg")
+		sprite.texture = load("res://assets/tempAssets/INGREDIENTS/GRAHAM.png")
 		pass
 
 func _on_ingredient_body_entered(body):
+	if self == null or body == null:
+		return
 	if "goodGuy" in body and self.get_parent() != null:
 		player.add_ingredient(self.type)
 		self.get_parent().remove_child(self)
 	elif "badGuy" in body and self.get_parent() != null:
 		self.get_parent().get_child(body.get_index()).wait = 1
-		self.get_parent().remove_child(self)
+		if self != null:
+			self.get_parent().remove_child(self)
 
 func _process(delta):
 	self.rotation += 1 * delta

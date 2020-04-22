@@ -121,21 +121,6 @@ cast_to = Vector2( 2000, 0 )
 current = true
 smoothing_speed = 2.0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Camera2D"]
-modulate = Color( 1, 0.0196078, 0.0196078, 1 )
-self_modulate = Color( 0.835294, 0.027451, 0.027451, 1 )
-show_behind_parent = true
-margin_left = 384.78
-margin_top = 252.376
-margin_right = 424.78
-margin_bottom = 292.375
-rect_scale = Vector2( 3, 1 )
-visible_characters = 0
-text = "hello"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/fade_in = SubResource( 3 )
 
@@ -150,8 +135,8 @@ margin_right = 346.78
 margin_bottom = -0.624481
 rect_scale = Vector2( 0.25, 0.25 )
 value = 100.0
-texture_under = ExtResource( 37 )
-texture_progress = ExtResource( 36 )
+texture_under = ExtResource( 36 )
+texture_progress = ExtResource( 37 )
 script = ExtResource( 38 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -189,6 +174,21 @@ margin_top = 59.0
 margin_right = 1013.0
 margin_bottom = 74.0
 script = ExtResource( 42 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="nuxIndicator" type="RichTextLabel" parent="."]
+visible = false
+modulate = Color( 1, 0.0196078, 0.0196078, 1 )
+self_modulate = Color( 0.835294, 0.027451, 0.027451, 1 )
+show_behind_parent = true
+margin_left = -39.219
+margin_top = -70.2804
+margin_right = -6.21901
+margin_bottom = -47.2804
+rect_scale = Vector2( 3, 1 )
+text = "NUX"
 __meta__ = {
 "_edit_use_anchors_": false
 }

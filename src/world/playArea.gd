@@ -1,6 +1,6 @@
 extends Node2D
 
-onready var timer = $ColorRect/Timer
+onready var timer = $BACKGROUND/Timer
 onready var loc = self.get_position_in_parent()
 onready var MAX_POSX = 2000 #will set these dynamically or based off parent later
 onready var MAX_POSY = 2000

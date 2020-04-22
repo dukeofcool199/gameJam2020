@@ -9,6 +9,8 @@ onready var sprite: = $Cheesecake_Ani
 enum DIR {up,down,left,right}
 var currentDir = DIR.up
 
+var NUX = 0
+
 onready var minion = preload("res://src/Agents/Minion.tscn")
 
 #ingredient inventories
@@ -39,6 +41,7 @@ func _ready():
 func _physics_process(delta):
 	var speed = 1
 	var move_vec = Vector2()
+
 
 	if Input.is_action_pressed("move_up"):
 		move_vec.y -= speed
@@ -78,7 +81,17 @@ func _physics_process(delta):
 	camera.global_position = global_position
 	
 func _process(delta):
-	if Input.is_action_pressed("spawn_minion") and self.creameCheese > 0 and self.butter > 0 and self.crackers > 0:
+	if Input.is_action_just_pressed("NUXMODE"):
+		if self.NUX == 0:
+			self.find_node("nuxIndicator").show()
+			self.NUX = 1
+		else:
+			self.find_node("nuxIndicator").hide()
+			self.NUX = 0
+
+	if (Input.is_action_pressed("spawn_minion") and self.creameCheese > 0 
+	and self.butter > 0 and self.crackers > 0 
+	or NUX == 1 and Input.is_action_pressed("spawn_minion")):
 		
 		var posOffset = 50
 		var pos = self.position
@@ -92,15 +105,15 @@ func _process(delta):
 				newMinion.position = Vector2(pos.x+posOffset,pos.y)
 			DIR.right:
 				newMinion.position = Vector2(pos.x-posOffset,pos.y)
-				
 
-		get_parent().add_child(newMinion)
-		self.butter -= 1
-		emit_signal("butter_changed", self.butter)
-		self.creameCheese -= 1
-		emit_signal("creamcheese_changed", self.creameCheese)
-		self.crackers -= 1
-		emit_signal("crackers_changed", self.crackers)
+		get_parent().add_child(newMinion)				
+		if NUX == 0:
+			self.butter -= 1
+			emit_signal("butter_changed", self.butter)
+			self.creameCheese -= 1
+			emit_signal("creamcheese_changed", self.creameCheese)
+			self.crackers -= 1
+			emit_signal("crackers_changed", self.crackers)
 	
 func i_am_minion():
 	pass	
